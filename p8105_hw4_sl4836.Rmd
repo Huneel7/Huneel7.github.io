@@ -71,6 +71,27 @@ ggplotly(grade_plot_by_boro)
 
 
 ```
+```{r}
+rest_inspec %>% 
+  janitor::clean_names() %>% 
+  group_by(violation_code) %>% 
+  count(sort = T)
+
+
+rest_inspec %>%
+  filter(violation_code %in% c("08A", "04L")) %>%
+  mutate(Date = format(inspection_date, "%Y-%m")) %>%
+  group_by(Date, violation_code) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  mutate(violation_code = violation_code %>% fct_relevel("08A", "04L")) %>%
+  mutate(violation_code = recode(violation_code, "08A" = "Facility not vermin proof",
+                                 "04L" = "Evidence of mice or live mice")) %>%
+  plot_ly(x = ~Date, y = ~count,
+          color = ~violation_code, type = "scatter", mode = "lines") 
+  
+```
+
 
 
 
