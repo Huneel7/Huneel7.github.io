@@ -1,0 +1,63 @@
+---
+title: "Dashboard: NYC Restaurant Inspections"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+    theme: sandstone
+---
+
+```{r}
+library(p8105.datasets)
+library(tidyverse)
+library(plotly)
+library(lubridate)
+```
+
+```{r}
+data("rest_inspec")
+
+```
+
+
+```{r}
+rest_inspec %>% 
+  janitor::clean_names() %>% 
+  mutate(inspection_date <- as.Date(inspection_date)) %>%
+  filter(inspection_date >= as.Date("2015-01-01"), 
+         score != "Missing", boro != "Missing") %>%
+  mutate(year = year(inspection_date)) %>%
+   plot_ly(x = ~boro, y = ~score, type = "box",
+    color = ~boro, frame = ~year, alpha = 0.5)
+```
+
+
+```{r}
+rest_inspec %>% 
+  janitor::clean_names() %>% 
+  mutate(inspection_date <- as.Date(inspection_date)) %>%
+  filter(inspection_date >= as.Date("2015-01-01"), 
+         score != "Missing", boro != "Missing") %>%
+  mutate(year = year(inspection_date)) %>%
+  group_by(camis, boro) %>%
+  summarise(score_per_rest_by_boro = mean(score)) %>%
+   plot_ly(x = ~boro, y = ~score_per_rest_by_boro, type = "box",
+    color = ~boro, alpha = 0.5) %>% 
+  layout(title = "The Distribution of Inspection Score",
+         xaxis = list(title = "Borough"),
+         yaxis = list(title = "Each Restaurant's Mean Score (2015-2017)"))
+
+   
+```
+
+```{r}
+names(rest_inspec)
+```
+
+```{r}
+skimr::skim(rest_inspec)
+```
+
+
+
