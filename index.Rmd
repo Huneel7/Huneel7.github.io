@@ -9,4 +9,4 @@ output:
 # Hello, I am Hun Lee. 
 <img src="images/image2.jpg" style="width:75%">
 
-[About me](about.html)
+Here's my [about](about.html) page.
