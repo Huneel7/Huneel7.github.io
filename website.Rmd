@@ -1,0 +1,12 @@
+---
+title: "Welcome! This is Hun's Website!"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+# Hello, I am Hun Lee. 
+<img src="images/image2.jpg" style="width:75%">
+
+[About me](about.html)
