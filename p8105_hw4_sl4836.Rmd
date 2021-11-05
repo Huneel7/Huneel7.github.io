@@ -17,7 +17,6 @@ library(lubridate)
 
 ```{r}
 data("rest_inspec")
-
 ```
 
 
@@ -25,11 +24,14 @@ data("rest_inspec")
 rest_inspec %>% 
   janitor::clean_names() %>% 
   mutate(inspection_date <- as.Date(inspection_date)) %>%
-  filter(inspection_date >= as.Date("2015-01-01"), 
+  filter(inspection_date >= as.Date("2014-01-01"), 
          score != "Missing", boro != "Missing") %>%
   mutate(year = year(inspection_date)) %>%
    plot_ly(x = ~boro, y = ~score, type = "box",
-    color = ~boro, frame = ~year, alpha = 0.5)
+    color = ~boro, frame = ~year, alpha = 0.5) %>% 
+  layout(title = "The Distribution of Inspection Score",
+         xaxis = list(title = "Borough"),
+         yaxis = list(title = "Each Restaurant's Score"))
 ```
 
 
@@ -50,6 +52,30 @@ rest_inspec %>%
 
    
 ```
+```{r}
+grade_plot_by_boro <- rest_inspec %>% 
+  janitor::clean_names() %>% 
+  mutate(inspection_date <- as.Date(inspection_date)) %>%
+  filter(inspection_date >= as.Date("2014-01-01"), 
+         score != "Missing", score >= 0, boro != "Missing") %>%
+  mutate(year = year(inspection_date)) %>%
+  mutate(grade = case_when(0 <= score & score <= 13 ~ "A",
+                         14 <= score & score <= 27 ~ "B",
+                         score >= 28 ~ "C")) %>%
+  group_by(boro,grade, year) %>%
+  summarise(Count = n()) %>%
+  rename(Grade = grade) %>%
+  ggplot(aes(boro, Count, fill = Grade, frame = year)) + geom_bar(stat  = "identity", position = position_dodge2())
+
+ggplotly(grade_plot_by_boro)
+
+
+```
+
+
+
+
+
 
 ```{r}
 names(rest_inspec)
