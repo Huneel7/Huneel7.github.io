@@ -1,12 +1,20 @@
 ---
-title: "Welcome! This is Hun's Website!"
+title: "Hun Lee"
 output: 
   html_document:
-    toc: true
+    toc: false
     toc_float: true
     theme: cerulean
 ---
-# Hello, I am Hun Lee. 
-<img src="images/image2.jpg" style="width:75%">
 
-Here's my [about](about.html) page.
+<img src="images/image2.jpg" style="width:50%" Align = "right" HSPACE="50" VSPACE="25" />
+
+### Welcome! 
+
+I'm Hun,I am a master student in Biostatistics at the Columbia Mailman School of Public Health. 
+
+I am from South Korea and I did my undergraduate education in University of California, Davis (Shout out to Aggies) with a degree in statistics. 
+
+I love playing soccer, cooking, finding a good tea, eating healthy, finding movies that make you think, and reading the books of the Bible. 
+
+
