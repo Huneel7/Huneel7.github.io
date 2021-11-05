@@ -92,7 +92,27 @@ rest_inspec %>%
   
 ```
 
+```{r}
+mice_violation_plot_by_cuisine <- 
+  rest_inspec %>%
+  filter(violation_code %in% c("08A", "04L")) %>%
+  group_by(cuisine_description, violation_code) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  filter(count >= 100) %>%
+  mutate(violation_code = recode(violation_code, "08A" = "Facility not vermin proof",
+                                 "04L" = "Evidence of mice or live mice")) %>%
+  mutate(cuisine_description = fct_reorder(cuisine_description, count, .desc = FALSE)) %>%
+  ggplot(aes(x = cuisine_description, y = count, fill = violation_code)) +
+  geom_bar(stat  = "identity", position = position_dodge2()) +
+  coord_flip()
 
+
+ggplotly(mice_violation_plot_by_cuisine, width = 1000, height = 600) 
+
+
+
+```
 
 
 
