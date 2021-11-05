@@ -3,8 +3,8 @@ output_dir: "."
 navbar:
   title: "Hun Lee"
   right:
-    - text: "Dashboard_NYC_Rest"
-      href: dashboard.html
+    - text: "Dashboard: NYC Restaurant Inspections"
+      href: Dashboard_NYC_Rest.html
     - text: "CV"
       href: hun_cv.pdf
     - icon: fa-envelope fa-lg
