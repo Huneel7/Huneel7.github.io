@@ -1,8 +1,8 @@
 ---
-title: "NYC Restaurants Inspection Analysis Dashboard"
+title: "Untitled"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     vertical_layout: fill
     source: embed
     theme: sandstone
@@ -16,7 +16,7 @@ library(plotly)
 library(lubridate)
 ```
 
-Column {data-width=500}
+Row {data-width=300}
 -----------------------------------------------------------------------
 
 ### Chart A
@@ -35,11 +35,12 @@ rest_inspec %>%
          yaxis = list(title = "Each Restaurant's Score"))
 ```
 
+-----------------------------------------------------------------------
 
 ### Chart B
 
 ```{r, echo = FALSE, message = FALSE}
-rest_inspec %>% 
+grade_plot_by_boro <- rest_inspec %>% 
   janitor::clean_names() %>% 
   mutate(inspection_date <- as.Date(inspection_date)) %>%
   filter(inspection_date >= as.Date("2014-01-01"), 
@@ -51,15 +52,13 @@ rest_inspec %>%
   group_by(boro,grade, year) %>%
   summarise(Count = n()) %>%
   rename(Grade = grade) %>%
-  plot_ly(x = ~boro, y = ~Count, color = ~Grade, 
-          frame = ~year, type = "bar", alpha = 0.7) %>% 
-  layout(title = "Counts of Grades by Borough",
-         xaxis = list(title = "Borough"),
-         yaxis = list(title = "Count"))
-  
+  ggplot(aes(boro, Count, fill = Grade, frame = year)) + geom_bar(stat  = "identity", position = position_dodge2())
+
+ggplotly(grade_plot_by_boro)
 ```
 
-Column  {data-height=500}
+
+Row  {data-width=300}
 -----------------------------------------------------------------------
 ### Chart C
 
@@ -74,29 +73,28 @@ rest_inspec %>%
   mutate(violation_code = recode(violation_code, "08A" = "Facility not vermin proof",
                                  "04L" = "Evidence of mice or live mice")) %>%
   plot_ly(x = ~Date, y = ~count,
-          color = ~violation_code, type = "scatter", mode = "lines", alpha = 0.5) 
+          color = ~violation_code, type = "scatter", mode = "lines") 
   
 ```
 
 ### Chart D
 
 ```{r, echo = FALSE, message = FALSE}
+mice_violation_plot_by_cuisine <- 
   rest_inspec %>%
   filter(violation_code %in% c("08A", "04L")) %>%
   group_by(cuisine_description, violation_code) %>%
   summarise(count = n()) %>%
   ungroup() %>%
-  filter(count > 700, cuisine_description != "Chicken") %>%
-  mutate(violation_code = recode(violation_code,"04L" = "Evidence of mice or live mice", 
-                                 "08A" = "Facility not vermin proof")) %>%
+  filter(count >= 100) %>%
+  mutate(violation_code = recode(violation_code, "08A" = "Facility not vermin proof",
+                                 "04L" = "Evidence of mice or live mice")) %>%
   mutate(cuisine_description = fct_reorder(cuisine_description, count, .desc = FALSE)) %>%
-  mutate(cuisine_description = recode(cuisine_description,"Latin (Cuban, Dominican, Puerto Rican, South & Central American)" = "Latin" )) %>% 
- plot_ly(height = 240, 
-   y = ~cuisine_description, x = ~count,
-          color = ~violation_code, type = "bar", alpha = 0.7, orientation = 'h') %>%
-  layout(title =  "Top 12 Worst Cuisines with Mice-related Violations",
-         xaxis = list(title = "Count"),
-         yaxis = list(title = "Cuisine"))
-  
+  ggplot(aes(x = cuisine_description, y = count, fill = violation_code)) +
+  geom_bar(stat  = "identity", position = position_dodge2()) +
+  coord_flip()
+
+
+ggplotly(mice_violation_plot_by_cuisine, width = 1000, height = 600) 
 ```
 
