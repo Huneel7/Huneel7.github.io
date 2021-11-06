@@ -3,7 +3,7 @@ output_dir: "."
 navbar:
   title: "Hun Lee"
   right:
-    - text: "Dashboard"
+    - text: "DASHBOARD"
       href: dashboard.html
     - text: "CV"
       href: hun_cv.pdf
