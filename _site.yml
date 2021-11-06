@@ -3,7 +3,7 @@ output_dir: "."
 navbar:
   title: "Hun Lee"
   right:
-    - text: "Dashboard: NYC Restaurants Inspections"
+    - text: "Dashboard"
       href: dashboard.html
     - text: "CV"
       href: hun_cv.pdf
@@ -11,6 +11,8 @@ navbar:
       href: mailto:<sl4836@cumc.columbia.edu>
     - icon: fa-github fa-lg
       href: http://github.com/Huneel7/
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/hun-lee-7b5043225/
 output:
   html_document:
     theme: sandstone
