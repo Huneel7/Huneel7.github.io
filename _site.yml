@@ -3,14 +3,14 @@ output_dir: "."
 navbar:
   title: "Hun Lee"
   right:
+    - text: "Dashboard: NYC Restaurant Inspections"
+      href: dashboard.html
     - text: "CV"
       href: hun_cv.pdf
     - icon: fa-envelope fa-lg
       href: mailto:<sl4836@cumc.columbia.edu>
     - icon: fa-github fa-lg
       href: http://github.com/Huneel7/
-    - text: "Dashboard: NYC Restaurant Inspections"
-      href: Dashboard_NYC_Rest_Inspection.html
 output:
   html_document:
     theme: sandstone
