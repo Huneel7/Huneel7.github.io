@@ -4,7 +4,7 @@ navbar:
   title: "Hun Lee"
   right:
     - text: "Dashboard: NYC Restaurant Inspections"
-      href: Dashboard_NYC_Rest_Inspect.html
+      href: Dashboard_NYC_Rest_Inspection.html
     - text: "CV"
       href: hun_cv.pdf
     - icon: fa-envelope fa-lg
