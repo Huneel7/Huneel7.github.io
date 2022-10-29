@@ -17,8 +17,12 @@ navbar:
         href: EIF_Causal_Mediation.pdf
       - text: "Nonparametric Doubly Robust Estimation of Continuous Eestimation"
         href: Nonparametric_doubly_robust.pdf
-    - text: "NYC Covid Analysis"
-      href: https://zacharykatz1.github.io/nyc_covid_trends/
+    - text: "Data Science"
+      menu:
+      - text: "NYC Covid Analysis"
+        href: https://zacharykatz1.github.io/nyc_covid_trends/
+      - text: "Machine Learning"
+        href: machine_learning.pdf
     - text: "NYC Restaurants Analysis"
       href: dashboard-copy.html
     - icon: fa-envelope fa-lg
