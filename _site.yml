@@ -3,7 +3,23 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "DASHBOARD"
+    - text: "Causal Inference Blog"
+      menu:
+      - text: "Backdoor Criterion"
+        href: BackdoorCriterion.pdf
+      - text: "Inverse Probability Weighting"
+        href: IP_Weighting.pdf
+      - text: "Propensity Score Matching"
+        href: propensitiy_score_matching.pdf
+      - text: "Augmented Doubly Robust Estimation"
+        href: AIPW_Doubly_Robust_Estimation.pdf
+      - text: "Semiparametric Theory for Causal Mediation Analysis"
+        href: EIF_Causal_Mediation.pdf
+      - text: "Nonparametric Doubly Robust Estimation of Continuous Eestimation"
+        href: Nonparametric_doubly_robust.pdf
+    - text: "NYC Covid Analysis"
+      href: https://zacharykatz1.github.io/nyc_covid_trends/
+    - text: "NYC Restaurants Analysis"
       href: dashboard-copy.html
     - icon: fa-envelope fa-lg
       href: mailto:<sl4836@cumc.columbia.edu>

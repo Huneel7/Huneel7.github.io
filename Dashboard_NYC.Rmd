@@ -1,0 +1,100 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+    source: embed
+    theme: sandstone
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+library(flexdashboard)
+library(p8105.datasets)
+library(tidyverse)
+library(plotly)
+library(lubridate)
+```
+
+Row {data-width=300}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r, echo = FALSE, message = FALSE}
+rest_inspec %>% 
+  janitor::clean_names() %>% 
+  mutate(inspection_date <- as.Date(inspection_date)) %>%
+  filter(inspection_date >= as.Date("2014-01-01"), 
+         score != "Missing", boro != "Missing") %>%
+  mutate(year = year(inspection_date)) %>%
+   plot_ly(x = ~boro, y = ~score, type = "box",
+    color = ~boro, frame = ~year, alpha = 0.5) %>% 
+  layout(title = "The Distribution of Inspection Score",
+         xaxis = list(title = "Borough"),
+         yaxis = list(title = "Each Restaurant's Score"))
+```
+
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r, echo = FALSE, message = FALSE}
+grade_plot_by_boro <- rest_inspec %>% 
+  janitor::clean_names() %>% 
+  mutate(inspection_date <- as.Date(inspection_date)) %>%
+  filter(inspection_date >= as.Date("2014-01-01"), 
+         score != "Missing", score >= 0, boro != "Missing") %>%
+  mutate(year = year(inspection_date)) %>%
+  mutate(grade = case_when(0 <= score & score <= 13 ~ "A",
+                         14 <= score & score <= 27 ~ "B",
+                         score >= 28 ~ "C")) %>%
+  group_by(boro,grade, year) %>%
+  summarise(Count = n()) %>%
+  rename(Grade = grade) %>%
+  ggplot(aes(boro, Count, fill = Grade, frame = year)) + geom_bar(stat  = "identity", position = position_dodge2())
+
+ggplotly(grade_plot_by_boro)
+```
+
+
+Row  {data-width=300}
+-----------------------------------------------------------------------
+### Chart C
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+rest_inspec %>%
+  filter(violation_code %in% c("08A", "04L")) %>%
+  mutate(Date = format(inspection_date, "%Y-%m")) %>%
+  group_by(Date, violation_code) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  mutate(violation_code = violation_code %>% fct_relevel("08A", "04L")) %>%
+  mutate(violation_code = recode(violation_code, "08A" = "Facility not vermin proof",
+                                 "04L" = "Evidence of mice or live mice")) %>%
+  plot_ly(x = ~Date, y = ~count,
+          color = ~violation_code, type = "scatter", mode = "lines") 
+  
+```
+
+### Chart D
+
+```{r, echo = FALSE, message = FALSE}
+mice_violation_plot_by_cuisine <- 
+  rest_inspec %>%
+  filter(violation_code %in% c("08A", "04L")) %>%
+  group_by(cuisine_description, violation_code) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  filter(count >= 100) %>%
+  mutate(violation_code = recode(violation_code, "08A" = "Facility not vermin proof",
+                                 "04L" = "Evidence of mice or live mice")) %>%
+  mutate(cuisine_description = fct_reorder(cuisine_description, count, .desc = FALSE)) %>%
+  ggplot(aes(x = cuisine_description, y = count, fill = violation_code)) +
+  geom_bar(stat  = "identity", position = position_dodge2()) +
+  coord_flip()
+
+
+ggplotly(mice_violation_plot_by_cuisine, width = 1000, height = 600) 
+```
+
