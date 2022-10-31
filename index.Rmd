@@ -8,7 +8,7 @@ output:
 
 <style>
     body {
-    background: url('backgroun.jpg');
+    background: url('background.jpeg');
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -16,16 +16,24 @@ output:
     }
 </style>
 
-<img src="me.jpg" style="width:35%" Align = "left" HSPACE="30" VSPACE="30" />
+<style>
+  img {width: 200px;
+       height: 200px;
+       object-fit: cover;
+       border-radius: 50%;
+      }
+</style>
+    
+<img src="me.jpeg" style="width:17%" Align = "left" HSPACE="10" VSPACE="20" />
 
-# Welcome! 
 $\\$
+<p style="color:white">Welcome!</p>
 
-I’m Hun, my hometown is Busan in South Korea. 
+<p style="color:white">I’m Hun, my hometown is Busan in South Korea.</p>
 
-I am currently enrolled in the program of biostatistics in the Mailman School of Public Health at Columbia University. I earned my B.S. in statistics from University of California, Davis. 
+<p style="color:white">I am currently enrolled in the program of biostatistics in the Mailman School of Public Health at Columbia University. I earned my B.S. in statistics from University of California, Davis.</p> 
 
-I am interested in pursuing my career in research! My research and academic interests lie in the intersection of causal inference, semi-parametric inference, and Bayesian inference. 
+<p style="color:white">I am interested in pursuing my career in research! My research and academic interests lie in the intersection of causal inference, semi-parametric inference, and Bayesian inference.</p>
 
-I am an inquisitive person motivated by faith, hope, love, and insight. I am also interested in soccer, baseball, cooking, mathematics, Fyodor Dostoyevsky books, and the books of the Bible.
+<p style="color:white">I am an inquisitive person motivated by faith, hope, love, and insight. I am also interested in soccer, baseball, cooking, mathematics, Fyodor Dostoyevsky books, and the books of the Bible.</p>
 
