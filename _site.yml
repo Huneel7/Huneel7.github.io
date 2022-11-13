@@ -15,6 +15,8 @@ navbar:
         href: propensitiy_score_matching.pdf
       - text: "Propensity Score Subclassification"
         href: propensity_score_subclassification.pdf
+      - text: "Bayesian Methods for Causal Inference"
+        href: Bayesian_Causal_Simulation.pdf
       - text: "Semiparametric Theory for Causal Mediation Analysis"
         href: EIF_Causal_Mediation.pdf
       - text: "Nonparametric Doubly Robust Estimation of Continuous Eestimation"
