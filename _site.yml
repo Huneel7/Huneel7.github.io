@@ -9,10 +9,12 @@ navbar:
         href: BackdoorCriterion.pdf
       - text: "Inverse Probability Weighting"
         href: IP_Weighting.pdf
-      - text: "Propensity Score Matching"
-        href: propensitiy_score_matching.pdf
       - text: "Augmented Doubly Robust Estimation"
         href: AIPW_Doubly_Robust_Estimation.pdf
+      - text: "Propensity Score Matching"
+        href: propensitiy_score_matching.pdf
+      - text: "Propensity Score Subclassification"
+        href: propensity_score_subclassification.pdf
       - text: "Semiparametric Theory for Causal Mediation Analysis"
         href: EIF_Causal_Mediation.pdf
       - text: "Nonparametric Doubly Robust Estimation of Continuous Eestimation"
