@@ -19,7 +19,7 @@ navbar:
         href: Bayesian_Causal_Simulation.pdf
       - text: "Semiparametric Theory for Causal Mediation Analysis"
         href: EIF_Causal_Mediation.pdf
-      - text: "Nonparametric Doubly Robust Estimation of Continuous Eestimation"
+      - text: "Nonparametric Doubly Robust Estimation of Continuous Estimation"
         href: Nonparametric_doubly_robust.pdf
     - text: "Data Science"
       menu:
