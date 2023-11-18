@@ -3,7 +3,7 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "Causal Inference Blog"
+    - text: "Statistical Methods Blog"
       menu:
       - text: "Backdoor Criterion"
         href: BackdoorCriterion.pdf
@@ -21,6 +21,8 @@ navbar:
         href: EIF_Causal_Mediation.pdf
       - text: "Nonparametric Doubly Robust Estimation of Continuous Estimation"
         href: Nonparametric_doubly_robust.pdf
+      - text: "Data Fusion with Multiple Imputation and Stratified Bootrstrap"
+        href: Cannabis_Homicide_Paper.pdf
     - text: "Data Science"
       menu:
       - text: "NYC Covid Analysis"
